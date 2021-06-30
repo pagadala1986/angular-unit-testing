@@ -65,16 +65,20 @@ We can test our Angular applications from scratch by writing and executing pure 
 But since testing is such a common activity with JavaScript there are a number of testing libraries and frameworks we can use which reduce the amount of time it takes to write tests.
 Two such tools and frameworks that are used when testing Angular are Jasmine and Karma and a discussion of those is the topic of this lecture.
 
-\***\*\*\*\*** Angular testing utilities\***\*\*\*\*\***
+## Angular testing utilities
 
 The Angular testing utilities help to create a testing environment that makes writing tests for your various constructs really easy. It consists of the TestBed class and various helper functions, found under the @angular/core/testing namespace. Let’s have a look at what these are and how they can help us to test various constructs. We will shortly introduce the most commonly used concepts so that you are familiar with them as we present them more deeply further on:
+
+## The TestBed class
 
 The TestBed class is the most important concept and creates its own testing module. In reality, when you test out a construct to detach it from the module it resides in and reattach it to the testing module created by the TestBed. The TestBed class has a configureTestModule() helper method that we use to set up the test module as needed. The TestBed can also instantiate components.
 ComponentFixture is a class wrapping the component instance. This means that it has some functionality on it and it has a member that is the component instance itself.
 
+## The DebugElement
+
 The DebugElement, much like the ComponentFixture, acts as a wrapper. It, however, wraps the DOM element and not the component instance. It’s a bit more than that though, as it has an injector on it that allows us to access the services that have been injected into a component.
 
-**\*\*\*** Learning Objectives **\***
+## Learning Objectives
 
 What is the Jasmine test framework?
 How to write tests in Jasmine?
@@ -90,7 +94,7 @@ function helloWorld() {
 return 'Hello world!';
 }
 
-We would write a Jasmine test spec like so:
+## We would write a Jasmine test spec like so:
 
 describe('Hello world', () => { (1)
 it('says hello', () => { (2)
@@ -105,46 +109,68 @@ expect(helloWorld()) (3)
 4. The matcher(expected) expression is what we call a Matcher. It does a boolean comparison with the expected value passed in vs. the actual value passed to the expect function, if they are false the spec fails.
    Built-In Matchers
 
-Jasmine comes with a few pre-built matchers like so:
+## Jasmine comes with a few pre-built matchers like so:
 
-expect(array).toContain(member)
-expect(fn).toThrow(string)
-expect(fn).toThrowError(string)
-expect(instance).toBe(instance)
-expect(mixed).toBeDefined()
+expect(array).toContain(member);
+
+expect(fn).toThrow(string);
+
+expect(fn).toThrowError(string);
+
+expect(instance).toBe(instance);
+
+expect(mixed).toBeDefined();
+
 expect(mixed).toBeFalsy();
+
 expect(mixed).toBeNull();
+
 expect(mixed).toBeTruthy();
+
 expect(mixed).toBeUndefined();
+
 expect(mixed).toEqual(mixed);
+
 expect(mixed).toMatch(pattern);
+
 expect(number).toBeCloseTo(number, decimalPlaces);
+
 expect(number).toBeGreaterThan(number);
+
 expect(number).toBeLessThan(number);
+
 expect(number).toBeNaN();
+
 expect(spy).toHaveBeenCalled();
+
 expect(spy).toHaveBeenCalledTimes(number);
+
 expect(spy).toHaveBeenCalledWith(...arguments);
 
-You can see concrete examples of how these matchers are used by looking at the Jasmine docs here:
+You can see concrete examples of how these matchers are used by looking at the
+
+## Jasmine docs here:
+
 http://jasmine.github.io/edge/introduction.html#section-Included_Matchers
-Setup and Teardown
+
+## Setup and Teardown
+
 Sometimes in order to test a feature we need to perform some setup, perhaps it’s creating some test objects. Also we may need to perform some cleanup activities after we have finished testing, perhaps we need to delete some files from the hard drive.
 
 These activities are called setup and teardown (for cleaning up) and Jasmine has a few functions we can use to make this easier:
 
-beforeAll
+## beforeAll
 
 This function is called once, before all the specs in a test suite (describe function) are run.
 
-afterAll
+## afterAll
 
 This function is called once after all the specs in a test suite are finished.
 
-beforeEach
+## beforeEach
 
 This function is called before each test specification (it function) is run.
 
-afterEach
+## afterEach
 
 This function is called after each test specification is run.
